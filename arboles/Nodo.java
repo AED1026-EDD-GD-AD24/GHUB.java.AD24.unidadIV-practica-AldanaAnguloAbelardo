@@ -5,7 +5,6 @@ public class Nodo {
     private Object valor;
     private Nodo derecho;
     private Nodo izquierdo;
-    private Nodo siguiente;
 
     public Nodo() {
         this.valor = null;
@@ -38,7 +37,7 @@ public class Nodo {
     }
     
         public Nodo getIzquierdo() {
-        return derecho;
+        return izquierdo;
 
     }
 
