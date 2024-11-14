@@ -31,9 +31,9 @@ public class ArbolBinario {
     private void preorden(Nodo aux) {
 
         if (aux != null) {
-        visitar(aux);
-        preorden(aux.getIzquierdo());
-        preorden(aux.getDerecho());
+            visitar(aux);
+            preorden(aux.getIzquierdo());
+            preorden(aux.getDerecho());
 
         }
 
@@ -47,9 +47,9 @@ public class ArbolBinario {
     private void inorden(Nodo aux) {
 
         if (aux != null) {
-        inorden(aux.getIzquierdo());
-        visitar(aux);
-        inorden(aux.getDerecho());
+            inorden(aux.getIzquierdo());
+            visitar(aux);
+            inorden(aux.getDerecho());
 
         }
 
@@ -63,9 +63,9 @@ public class ArbolBinario {
     private void postorden(Nodo aux) {
 
         if (aux != null) {
-        postorden(aux.getIzquierdo());
-        postorden(aux.getDerecho());
-        visitar(aux);
+            postorden(aux.getIzquierdo());
+            postorden(aux.getDerecho());
+            visitar(aux);
 
         }
 
@@ -76,4 +76,74 @@ public class ArbolBinario {
         System.out.print(aux.getValor() + " ");
 
     }
+
+    /*
+     * Recorrido por niveles
+     */
+
+    public void recorridoPorNiveles() {
+
+        cola.Cola<Nodo> cola = new cola.Cola<>();
+        cola.encolar(raiz);
+
+        while (!cola.esVacia()) {
+            Nodo aux = cola.frente();
+            visitar(aux);
+            if (aux.getIzquierdo() != null) {
+                cola.encolar(aux.getIzquierdo());
+            }
+            if (aux.getDerecho() != null)
+                cola.encolar(aux.getDerecho());
+            cola.desencolar();
+        }
+    }
+
+    /*
+     * Recorrido preorden version iterativa, utilizando una pila
+     */
+
+    public void preordenIteratvio() {
+
+        pila.Pila<Nodo> pila = new pila.Pila<>();
+        pila.apilar(raiz);
+
+        while (!pila.esVacia()) {
+            Nodo aux = pila.cima();
+            visitar(aux);
+            pila.retirar();
+            if (aux.getDerecho() != null)
+                pila.apilar(aux.getDerecho());
+            if (aux.getIzquierdo() != null)
+                pila.apilar(aux.getIzquierdo());
+
+        }
+    }
+    /*
+     * Recorrido inorden version iterativa, utiliza una pila
+     */
+
+    public void inordenIterativo() {
+
+        pila.Pila<Nodo> pila = new pila.Pila<>();
+        pila.apilar(raiz);
+        Nodo aux = raiz.getIzquierdo();
+
+        while (!pila.esVacia() || aux != null) {
+        
+            if (aux != null) {
+                pila.apilar(aux);
+                aux = aux.getIzquierdo();
+
+            } else {
+
+            aux = pila.cima();
+            pila.retirar();
+            visitar(aux);
+            aux = aux.getDerecho();
+
+            }
+        }
+    }
+
+
 }

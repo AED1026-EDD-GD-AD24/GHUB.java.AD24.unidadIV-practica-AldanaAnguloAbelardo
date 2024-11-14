@@ -1,3 +1,7 @@
+./cola/Nodo.java
+./cola/Cola.java
+./pila/Nodo.java
+./pila/Pila.java
 ./arboles/ArbolBinario.java
 ./arboles/Nodo.java
 ./arboles/ClienteMain.java
