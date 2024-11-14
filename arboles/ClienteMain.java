@@ -31,7 +31,13 @@ public class ClienteMain {
         System.out.println("\n Recorrido en postorden recursivo");
         ab.postorden();
         System.out.println();
-
+        System.out.println("Recorrido en preorden iterativo");
+        ab.preordenIteratvio();
+        System.out.println("Recorrido en inorden iterativo");
+        ab.inordenIterativo();
+        System.out.println("Recorrido en postorden iterativo");
+        ab.postordenIterativo();
+        System.out.println();
         
     }
 }
