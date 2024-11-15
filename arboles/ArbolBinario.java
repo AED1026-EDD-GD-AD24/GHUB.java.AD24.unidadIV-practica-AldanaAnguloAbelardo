@@ -151,7 +151,7 @@ public class ArbolBinario {
 
     public void postordenIterativo () {
 
-        pila.Pila<Nodo> pila = new pila.Pila();
+        pila.Pila<Nodo> pila = new pila.Pila<>();
         Nodo aux = raiz;
         Nodo q = raiz;
         

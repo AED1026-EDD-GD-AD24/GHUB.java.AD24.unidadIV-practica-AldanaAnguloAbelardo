@@ -24,6 +24,7 @@ public class ClienteMain {
         nodoC.setIzquierdo(nodoF);
         nodoC.setDerecho(nodoG);
 
+        // Recursivo
         System.out.println("Recorrido en preorden recursivo");
         ab.preorden();
         System.out.println("\n Recorrido en inorden recursivo");
@@ -31,11 +32,13 @@ public class ClienteMain {
         System.out.println("\n Recorrido en postorden recursivo");
         ab.postorden();
         System.out.println();
+
+        // Iterativo
         System.out.println("Recorrido en preorden iterativo");
         ab.preordenIteratvio();
-        System.out.println("Recorrido en inorden iterativo");
+        System.out.println("\n Recorrido en inorden iterativo");
         ab.inordenIterativo();
-        System.out.println("Recorrido en postorden iterativo");
+        System.out.println("\n Recorrido en postorden iterativo");
         ab.postordenIterativo();
         System.out.println();
         

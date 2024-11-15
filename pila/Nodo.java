@@ -1,4 +1,4 @@
-package cola;
+package pila;
 
 public class Nodo<T> {
 
