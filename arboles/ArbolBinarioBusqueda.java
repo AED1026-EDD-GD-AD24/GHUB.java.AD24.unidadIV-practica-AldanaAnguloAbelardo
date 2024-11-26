@@ -1,149 +1,209 @@
 package arboles;
 
-public class ArbolBinarioBusqueda extends ArbolBinario {
-
-    public ArbolBinarioBusqueda() {
+public class ArbolBinarioBusqueda extends ArbolBinario{
+    public ArbolBinarioBusqueda(){
         super();
-    }
 
-    public ArbolBinarioBusqueda(Nodo raiz) {
+    }
+    public ArbolBinarioBusqueda(Nodo raiz){
         super(raiz);
+
     }
-
-    // Inserta un nodo en el arbol binario
-    public void insertar(Object valor) throws Exception {
-
-        Comparable dato = (Comparable) valor;
-
+    /**
+     * Inserta un nodo en el arbol binario
+     * @param valor
+     */
+    public void inserta(Object valor) throws Exception{
+        Comparable dato = (Comparable)valor;
         Nodo nuevo = new Nodo();
         nuevo.setValor(dato);
-
-        if (raiz == null)
-            raiz = nuevo;
-        else {
-
-            // anterior: Este nodo anterior es una referencia al padre de AUX
+        if(raiz == null)
+           raiz = nuevo;
+        else{
+            // anterior: refenencia al padre de aux
             Nodo anterior = null;
-
-            // Aux = auxiliar que va recorriendo los nodos, desde la raiz
-            Nodo aux = raiz;
-
-            while (aux != null) {
+            //aux: auxiliar que va recorriendo los nodos, desde la raiz
+            Nodo aux  = raiz;
+            while (aux != null){
                 anterior = aux;
                 if (dato.esMenor(aux.getValor()))
-                    aux = aux.getIzquierdo();
+                  aux = aux.getIzquierdo();
                 else if (dato.esMayor(aux.getValor()))
-                    aux = aux.getDerecho();
+                   aux = aux.getDerecho();
                 else
-                    throw new Exception("Dato duplicado.");
+                  throw new Exception("Dato Duplicado");
             }
-
-            if (dato.esMenor(anterior.getValor()))
-                anterior.setIzquierdo(nuevo);
+            if(dato.esMenor(anterior.getValor()))
+               anterior.setIzquierdo(nuevo);
             else
-                anterior.setDerecho(nuevo);
+               anterior.setDerecho(nuevo);
         }
-
     }
-
-    /*
-     * Insertar interfaz de la operacion, llama al metodo insertarRecursivo que
-     * realiza la operacio
-     * y de vuelve la raiz del nuevo arbol. A este metodo interno se le pasa la raiz
-     * actual, a partir de la cual
-     * se describe el camino de busquda, y al final se enlaza
+    /**
+     * insertar 2 es la interfaz de la operacion, llama al metodo
+     * insertarRecursivo que realiza la operacion y devuelve la raiz del nuevo 
+     * arbol. A este metodo interno se le pasa la raiz actual, a partir
+     * de la cual se describe el camino de busqueda, y al final se enlaza
+     * 
      */
-
-    public void insertar2(Object valor) throws Exception {
-
+    public void insertar2(Object valor) throws Exception{
         Comparable dato = (Comparable) valor;
-        raiz = insertarRec(raiz, dato);
-
+        raiz = insertarRec(raiz,dato);
     }
 
-    private Nodo insertarRec(Nodo raizSub, Comparable dato) throws Exception {
-        if (raizSub == null) {
-
-            // Caso base, termina la recursividad
+    private Nodo insertarRec(Nodo raizSub, Comparable dato) throws Exception{
+        if (raizSub == null){
+            //caso base, termina la recursividad
             raizSub = new Nodo(dato);
-        } else {
-            if (dato.esMenor(raizSub.getValor())) {
-
+        }
+        else{
+            if (dato.esMenor(raizSub.getValor())){
                 Nodo iz = insertarRec(raizSub.getIzquierdo(), dato);
                 raizSub.setIzquierdo(iz);
-
-            } else if (dato.esMayor(raizSub.getValor())) {
-
-                Nodo dr = insertarRec(raizSub.getDerecho(), dato);
-                raizSub.setDerecho(dr);
-
-            } else {
-                throw new Exception("Dato esta duplicado.");
+            }
+            else{
+                if (dato.esMayor(raizSub.getValor())){
+                    Nodo dr = insertarRec(raizSub.getDerecho(), dato);
+                    raizSub.setDerecho(dr);
+                }
+                else{
+                    throw new Exception("Dato Duplicado");
+                }
             }
         }
-
         return raizSub;
+
     }
 
-    /*
+    /**
      * 
-     *  @param, valor a buscar
-     *  @return el nodo encontrado
+     * @param valor, valor a buscar
+     * @return el nodo encontrado
      */
-
-    public Nodo buscar(Object valor) {
-        Comparable dato = (Comparable) valor;
-
+    public Nodo buscar(Object valor){
+        Comparable dato = (Comparable)valor;
         if (raiz == null)
-            return raiz;
-        else {
-            // Aux es un auxiliar que va recorriendo el arbol desde la raiz
+           return raiz;
+        else{
+            //aux: auxiliar que va recorriendo los nodos, de la la raiz
             Nodo aux = raiz;
-            while (aux != null) {
+            while (aux !=null){
                 if (dato.esIgual(aux.getValor()))
-                    return aux;
-                else if (dato.esMenor(aux.getValor()))
-                    aux = aux.getIzquierdo();
-                else
-                    aux = aux.getDerecho();
+                   return aux;
+                if (dato.esMenor(aux.getValor()))
+                   aux = aux.getIzquierdo();
+                else 
+                   aux = aux.getDerecho();
+                   
             }
+            return null;
         }
-        return null;
     }
 
-    /*
-     * 
-     * Interfaz de buscar que invoca al metodo recursivo localizar
-     *  @param buscado, el valor buscado
-     *  @return Nodo buscado o null si no lo encuentra
+    /**
+     * Interfaz de buscar que invoca al metodo recuersivo localizar
+     * @param buscado, valor buscado
+     * @return Nodo buscado o null si no lo encuentra
      */
-    public Nodo buscar2 (Object buscado) {
-        Comparable dato = (Comparable) buscado;
-
+    public Nodo buscar2(Object buscado){
+        Comparable dato = (Comparable)buscado;
         if (raiz == null)
-            return null;
+          return null;
         else
-            return localizar(raiz, dato);
+           return localizar(raiz,dato);
     }
 
-
-    /*
-     *  Version recursiva
-     *  @param raizSUb
-     *  @param buscado
-     *  @return Nodo buscado si lo encuentra, si no returna null
+    /**
+     * Version recursiva
+     * @param raizSub
+     * @param buscado
+     * @return Nodo buscado si lo encuentra, si no retorna null
      */
-    
-    private Nodo localizar (Nodo raizSub, Comparable buscado) {
 
+    private Nodo localizar(Nodo raizSub, Comparable buscado){
         if (raizSub == null)
-            return null;
-        else if (buscado.esIgual(raizSub.getValor())) {
+           return null;
+        else if (buscado.esIgual(raizSub.getValor()))
             return raizSub;
-        } else if (buscado.esMenor(raizSub.getValor()))
+        else if (buscado.esMenor(raizSub.getValor()))
             return localizar(raizSub.getIzquierdo(), buscado);
         else 
             return localizar(raizSub.getDerecho(), buscado);
 
     }
+    public boolean eliminar(Object valor){
+        Comparable dato = (Comparable)valor;
+        //Buscar el nodo a eliminar y su antecesor
+        Nodo antecesor = null; //antecesor del nodo a eliminar
+        //aux: auxiliar que va recorriendo los nodos, desde la raiz
+        Nodo aux = raiz;
+        while (aux !=null){
+            if (dato.esIgual(aux.getValor())){
+                break;
+            }
+            antecesor = aux;
+            if (dato.esMenor(aux.getValor()))
+                aux = aux.getIzquierdo();
+            else 
+                aux = aux.getDerecho();
+            
+
+        }
+        if (aux == null){
+            return false;
+        }
+        //si llega a este punto, el nodo a eliminar existe y es aux y su antecesor es antecesor
+        //Exainar cada caso
+        //1. si tiene menos de dos hijos, incluso una hoja
+        if (aux.getIzquierdo() == null) //solo tiene hijo derecho
+            if(((Comparable) aux.getValor()).esMenor(antecesor.getValor()))
+                antecesor.setIzquierdo(aux.getDerecho());
+               
+            else
+                antecesor.setDerecho(aux.getDerecho());
+        else if (aux.getDerecho()==null)//solo tiene hijo izquierdo
+            if(((Comparable) aux.getValor()).esMenor(antecesor.getValor()))
+                 antecesor.setIzquierdo(aux.getIzquierdo());
+            else
+                 antecesor.setDerecho(aux.getIzquierdo());
+        else 
+            //El nodo a eliminar tiene rama izquierda y rama derecha
+            reemplazarPorMayorIzquierdo(aux);
+        aux =null;
+        return true;
+
+
+    }
+    /**
+     * Reemplaza el nodo actual por el mayor del la rama izquierda
+     * 
+     * @param act nodo Actual o nodo a eliminar que tiene rama izquierda y rama derecha
+     */
+    
+    public void reemplazarPorMayorIzquierdo(Nodo act) {
+
+        Nodo mayor = act;
+        Nodo ant = act;
+
+        mayor = act.getIzquierdo();
+        // Buscar el mayor de la rama izquierda
+        // Ant siempre va a ser el antecesor de mayor
+
+        while (mayor.getDerecho() != null) {
+            ant = mayor;
+            mayor = mayor.getDerecho();
+
+        }
+
+        act.setValor(mayor.getValor()); // Reemplazo
+        // Reajuste
+
+        if (ant == act)
+            ant.setIzquierdo(mayor.getIzquierdo());
+        else
+            ant.setDerecho(mayor.getIzquierdo());
+    }
+
+
+    
 }

@@ -22,7 +22,7 @@ public class Entero implements Comparable {
 
     @Override
     public String toString() {
-        return "Entero [dato= " + dato + "]";
+        return dato + " ";
     }
 
     @Override
