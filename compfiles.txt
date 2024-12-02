@@ -2,6 +2,7 @@
 ./cola/Cola.java
 ./pila/Nodo.java
 ./pila/Pila.java
+./arboles/ClienteMainTreeSet.java
 ./arboles/ArbolBinario.java
 ./arboles/Nodo.java
 ./arboles/Comparable.java
@@ -13,4 +14,6 @@
 ./arboles/ClienteMain.java
 ./arboles/BTreePrinter.java
 ./miPrincipal/Principal.java
+./grafos/Vertice.java
+./grafos/GrafoMatriz.java
 ./miTest/AppTest.java

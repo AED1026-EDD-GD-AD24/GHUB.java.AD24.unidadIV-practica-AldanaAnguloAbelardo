@@ -1,7 +1,8 @@
 package arboles;
 
 public class TestComparable {
-    public static void main(String[] args) {
+/*
+   public static void main(String[] args) {
         Estudiante estudiante1 = new Estudiante(1245,"Juan Abitia");
         Estudiante estudiante2 = new Estudiante(1223,"Luis Castañeda");
         if (estudiante1.equals(estudiante2))
@@ -22,5 +23,5 @@ public class TestComparable {
            System.out.println(entero1.getDato()+"  es menor que "+entero2.getDato());
 
     }
-    
+*/
 }
